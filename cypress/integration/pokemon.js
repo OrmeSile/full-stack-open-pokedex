@@ -9,7 +9,7 @@ describe('Pokedex', function () {
   it('single pokemon page can be navigated to from front page'),
     function () {
       cy.visit('http://localhost:5000')
-      cy.contains('bulbasaur').click()
+      cy.contains('ivysaur').click()
       cy.contains('Chlorophyll')
       cy.contains('Overgrow')
     }

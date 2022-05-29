@@ -33,3 +33,4 @@ jobs:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "pokedex-2121"
         heroku_email: "spamoremas@gmail.com"
+        healthcheck: "https://pokedex-2121.herokuapp.com/health"

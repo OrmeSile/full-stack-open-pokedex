@@ -46,7 +46,7 @@ jobs:
         with:
           severity: error
           details: >
-            Failed: actor:  ${{github actor}} 
+            "Failed: actor:  ${{github actor}}"
           webhookUrl: ${{secrets.DISCORD_WEBHOOK}}
       - name: Success
         uses: rjstone/discord-webhook-notify@v1

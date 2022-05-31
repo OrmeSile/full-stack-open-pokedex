@@ -45,8 +45,7 @@ jobs:
         if: failure()
         with:
           severity: error
-          details: >
-            "Failed: actor:  ${{github actor}}"
+          details: blame ${{github actor}}
           webhookUrl: ${{secrets.DISCORD_WEBHOOK}}
       - name: Success
         uses: rjstone/discord-webhook-notify@v1

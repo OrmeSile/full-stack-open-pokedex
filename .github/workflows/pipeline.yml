@@ -40,13 +40,28 @@ jobs:
           healthcheck: 'https://pokedex-2121.herokuapp.com/health'
           checkstring: 'ok'
           rollbackonhealthcheckfailed: true
+      - name: Error
+        uses: rjstone/discord-webhook-notify@v1
+        if: failure()
+        with:
+          severity: error
+          details: >
+            Failed: actor:  ${{github actor}} 
+          webhookUrl: ${{secrets.DISCORD_WEBHOOK}}
+      - name: Success
+        uses: rjstone/discord-webhook-notify@v1
+        if: success()
+        with:
+          severity: info
+          details: Build succeeded!
+          webhookUrl: ${{secrets.DISCORD_WEBHOOK}}
   tag_release:
     needs: [simple_deployment_pipeline]
     runs-on: ubuntu-20.04
     steps:
       - name: Bump version and push tag
         if: github.event_name == 'push' || !contains('#skip', join(github.event.commits.*.message))
-        uses: anothrNick/github-tag-action@1.36.0
+        uses: anothrNick/github-tag-action@eca2b69f9e2c24be7decccd0f15fdb1ea5906598
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP:  'patch'
